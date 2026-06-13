@@ -8,7 +8,7 @@ const path = require('path');
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const app = express();
-app.use(cors());
+app.use(cors("*"));
 app.use(express.json({ limit: '10mb' }));
 
 app.use('/api/content', require('./routes/contentRoutes'));
