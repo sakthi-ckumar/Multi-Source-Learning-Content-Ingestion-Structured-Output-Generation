@@ -7,12 +7,7 @@ const { generateLearningArtifacts } = require('../services/generator');
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, '../../uploads')),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
-});
-
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/ingest', upload.single('file'), async (req, res) => {
   try {

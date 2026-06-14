@@ -1,11 +1,10 @@
-const fs = require('fs');
 const path = require('path');
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
 
 async function extractTextFromFile(file) {
   const ext = path.extname(file.originalname).toLowerCase();
-  const buffer = fs.readFileSync(file.path);
+  const buffer = file.buffer;
 
   if (ext === '.pdf') {
     const data = await pdfParse(buffer);
